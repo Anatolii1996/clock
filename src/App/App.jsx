@@ -1,14 +1,15 @@
 import "./App.scss";
+import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 
 function App() {
   return (
     <div className="App">
       <div className="container">
         <div id="break-label">
-          <p>Break Length</p>
-          <button></button>
-          <p>5</p>
-          <button></button>
+          <p className="label">Break Length</p>
+          <button><FaArrowDown /> </button>
+          <p className="count">5</p>
+          <button><FaArrowUp/></button>
         </div>
         <div id="session-label">
           <p>Session Length</p>
