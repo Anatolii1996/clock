@@ -23,25 +23,38 @@ function App() {
   return (
     <div className="App">
       <div className="container">
+        <h1>25 + 5 Clock</h1>
         <div id="break-label">
           <p className="label">Break Length</p>
-          <button onClick={()=>decrement(setBreakCount)}>
+          <button id="break-decrement" onClick={() => decrement(setBreakCount)}>
             <FaArrowDown />{" "}
           </button>
-          <p className="count">{breakCount}</p>
-          <button onClick={() => increment(setBreakCount)}>
+          <p id="break-length">{breakCount}</p>
+          <button id="break-increment" onClick={() => increment(setBreakCount)}>
             <FaArrowUp />
           </button>
         </div>
         <div id="session-label">
           <p className="label">Session Length</p>
-          <button onClick={()=>decrement(setSessionCount)}>
+          <button
+            id="session-decrement"
+            onClick={() => decrement(setSessionCount)}
+          >
             <FaArrowDown />{" "}
           </button>
-          <p className="count">{sessionCount}</p>
-          <button onClick={() => increment(setSessionCount)}>
+          <p id="session-length">{sessionCount}</p>
+          <button
+            id="session-increment"
+            onClick={() => increment(setSessionCount)}
+          >
             <FaArrowUp />
           </button>
+        </div>
+        <div className="timer_wrap">
+          <div className="timer">
+            <p id="timer-label">Session</p>
+            <p id="time-left"></p>
+          </div>
         </div>
       </div>
     </div>
