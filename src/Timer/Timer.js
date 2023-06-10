@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import "./Timer.scss";
 import { useTimer } from 'react-timer-hook';
-
+import { HiPlayPause } from "react-icons/hi2";
 
 const Timer = ({ expiryTimestamp }) => {
-
+    const [isPayse, setIsPayse] = useState(true);
 
     const {
         seconds,
@@ -23,15 +24,23 @@ const Timer = ({ expiryTimestamp }) => {
     const formattedSeconds = seconds.toString().padStart(2, '0');
 
     return (
-        <div id="time-left" style={{ textAlign: 'center' }}>
+        <div className='time_wrap' >
 
-            <div style={{ fontSize: '80px' }}>
+            <div id="time-left" style={{ fontSize: '80px' }}>
                 <span>{formattedMinutes}</span>:<span>{formattedSeconds}</span>
             </div>
 
-            {/* <button onClick={start}>Start</button> */}
-            <button onClick={pause}>Pause</button>
-            <button onClick={resume}>Resume</button>
+           
+            <button id="start_stop" onClick={()=>{
+                if(isPayse){
+                    resume()
+                    setIsPayse(false)
+                }else{
+                    pause()
+                    setIsPayse(true)
+                }
+            }}><HiPlayPause/></button>
+           
             <button onClick={() => {
                 // Restarts to 5 minutes timer
                 const time = new Date();
