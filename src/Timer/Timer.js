@@ -3,12 +3,12 @@ import { useTimer } from 'react-timer-hook';
 
 
 const Timer = ({ expiryTimestamp }) => {
-    const [isTimerRunning, setIsTimerRunning] = useState(false);
+    
 
     const {
         seconds,
         minutes,
-        isRunning,
+       
         start,
         pause,
         resume,
@@ -16,15 +16,14 @@ const Timer = ({ expiryTimestamp }) => {
     } = useTimer({ expiryTimestamp, autoStart: false });
 
     useEffect(() => {
-        console.log(isRunning+"1111")
+        restart(expiryTimestamp, false);
+       
 
-        restart(expiryTimestamp);
-        console.log(isRunning+"22222")
     }, [expiryTimestamp, restart]);
 
     const formattedMinutes = minutes.toString().padStart(2, '0');
     const formattedSeconds = seconds.toString().padStart(2, '0');
-    console.log(isRunning+"33333")
+   
     return (
         <div style={{ textAlign: 'center' }}>
 
@@ -32,7 +31,7 @@ const Timer = ({ expiryTimestamp }) => {
                 <span>{formattedMinutes}</span>:<span>{formattedSeconds}</span>
             </div>
 
-            <button onClick={start}>Start</button>
+            {/* <button onClick={start}>Start</button> */}
             <button onClick={pause}>Pause</button>
             <button onClick={resume}>Resume</button>
             <button onClick={() => {
