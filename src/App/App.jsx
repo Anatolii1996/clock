@@ -29,9 +29,6 @@ function App() {
     });
   };
 
-  // const time = new Date();
-  // time.setSeconds(time.getSeconds() + sessionCount*60);
-
   return (
     <div className="App">
       <div className="container">
@@ -66,7 +63,6 @@ function App() {
           <div className="timer">
             <p id="timer-label">Session</p>
             {expiryTimestamp && <Timer expiryTimestamp={expiryTimestamp}  />}
-            {/* <p id="time-left"></p> */}
           </div>
         </div>
       </div>

@@ -3,12 +3,12 @@ import { useTimer } from 'react-timer-hook';
 
 
 const Timer = ({ expiryTimestamp }) => {
-    
+
 
     const {
         seconds,
         minutes,
-       
+        isRunning,
         start,
         pause,
         resume,
@@ -17,15 +17,13 @@ const Timer = ({ expiryTimestamp }) => {
 
     useEffect(() => {
         restart(expiryTimestamp, false);
-       
-
     }, [expiryTimestamp, restart]);
 
     const formattedMinutes = minutes.toString().padStart(2, '0');
     const formattedSeconds = seconds.toString().padStart(2, '0');
-   
+
     return (
-        <div style={{ textAlign: 'center' }}>
+        <div id="time-left" style={{ textAlign: 'center' }}>
 
             <div style={{ fontSize: '80px' }}>
                 <span>{formattedMinutes}</span>:<span>{formattedSeconds}</span>
