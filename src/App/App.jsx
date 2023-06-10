@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import Timer from "../Timer/Timer";
@@ -6,6 +6,14 @@ import Timer from "../Timer/Timer";
 function App() {
   const [breakCount, setBreakCount] = useState(5);
   const [sessionCount, setSessionCount] = useState(25);
+
+  const [expiryTimestamp, setExpiryTimestamp] = useState(null);
+
+  useEffect(() => {
+    const time = new Date();
+    time.setSeconds(time.getSeconds() + sessionCount * 60);
+    setExpiryTimestamp(time);
+  }, [sessionCount]);
 
   const increment = (arg) => {
     arg((prev) => prev + 1);
@@ -21,8 +29,8 @@ function App() {
     });
   };
 
-  const time = new Date();
-  time.setSeconds(time.getSeconds() + sessionCount*60);
+  // const time = new Date();
+  // time.setSeconds(time.getSeconds() + sessionCount*60);
 
   return (
     <div className="App">
@@ -57,7 +65,7 @@ function App() {
         <div className="timer_wrap">
           <div className="timer">
             <p id="timer-label">Session</p>
-            <Timer expiryTimestamp={time} />
+            {expiryTimestamp && <Timer expiryTimestamp={expiryTimestamp}  />}
             {/* <p id="time-left"></p> */}
           </div>
         </div>
