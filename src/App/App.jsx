@@ -6,8 +6,8 @@ import Timer from "../Timer/Timer";
 function App() {
   const [breakCount, setBreakCount] = useState(5);
   const [sessionCount, setSessionCount] = useState(25);
-
   const [expiryTimestamp, setExpiryTimestamp] = useState(null);
+  const [isTimerRun, setIsTimerRun] = useState(false);
 
   useEffect(() => {
     const time = new Date();
@@ -35,11 +35,19 @@ function App() {
         <h1>25 + 5 Clock</h1>
         <div id="break-label">
           <p className="label">Break Length</p>
-          <button id="break-decrement" onClick={() => decrement(setBreakCount)}>
+          <button
+            id="break-decrement"
+            onClick={() => decrement(setBreakCount)}
+            disabled={isTimerRun}
+          >
             <FaArrowDown />{" "}
           </button>
           <p id="break-length">{breakCount}</p>
-          <button id="break-increment" onClick={() => increment(setBreakCount)}>
+          <button
+            id="break-increment"
+            onClick={() => increment(setBreakCount)}
+            disabled={isTimerRun}
+          >
             <FaArrowUp />
           </button>
         </div>
@@ -48,6 +56,7 @@ function App() {
           <button
             id="session-decrement"
             onClick={() => decrement(setSessionCount)}
+            disabled={isTimerRun}
           >
             <FaArrowDown />{" "}
           </button>
@@ -55,6 +64,7 @@ function App() {
           <button
             id="session-increment"
             onClick={() => increment(setSessionCount)}
+            disabled={isTimerRun}
           >
             <FaArrowUp />
           </button>
@@ -62,7 +72,12 @@ function App() {
         <div className="timer_wrap">
           <div className="timer">
             <p id="timer-label">Session</p>
-            {expiryTimestamp && <Timer expiryTimestamp={expiryTimestamp}  />}
+            {expiryTimestamp && (
+              <Timer
+                expiryTimestamp={expiryTimestamp}
+                setIsTimerRun={setIsTimerRun}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -3,7 +3,8 @@
   #time-left {
     font-size: 80px;
   }
-  #start_stop {
+  button{
+    cursor: pointer;
     border: 0;
     height: 30px;
     background: inherit;
@@ -12,4 +13,5 @@
       color: white;
     }
   }
+ 
 }

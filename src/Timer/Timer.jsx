@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import "./Timer.scss";
 import { useTimer } from 'react-timer-hook';
 import { HiPlayPause } from "react-icons/hi2";
+import { MdRestartAlt } from "react-icons/md";
 
-const Timer = ({ expiryTimestamp }) => {
+const Timer = ({ expiryTimestamp, setIsTimerRun }) => {
     const [isPayse, setIsPayse] = useState(true);
 
     const {
@@ -19,6 +20,10 @@ const Timer = ({ expiryTimestamp }) => {
     useEffect(() => {
         restart(expiryTimestamp, false);
     }, [expiryTimestamp, restart]);
+
+    useEffect(()=>{
+        setIsTimerRun(isRunning)
+    }, [isRunning])
 
     const formattedMinutes = minutes.toString().padStart(2, '0');
     const formattedSeconds = seconds.toString().padStart(2, '0');
@@ -41,12 +46,12 @@ const Timer = ({ expiryTimestamp }) => {
                 }
             }}><HiPlayPause/></button>
            
-            <button onClick={() => {
+            <button id="reset" onClick={() => {
                 // Restarts to 5 minutes timer
                 const time = new Date();
                 time.setSeconds(time.getSeconds() + 300);
                 restart(time)
-            }}>Restart</button>
+            }}><MdRestartAlt/></button>
         </div>
     );
 }
