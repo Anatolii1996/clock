@@ -76,6 +76,8 @@ function App() {
               <Timer
                 expiryTimestamp={expiryTimestamp}
                 setIsTimerRun={setIsTimerRun}
+                setSessionCount={setSessionCount}
+                setBreakCount={setBreakCount}
               />
             )}
           </div>

@@ -4,7 +4,7 @@ import { useTimer } from 'react-timer-hook';
 import { HiPlayPause } from "react-icons/hi2";
 import { MdRestartAlt } from "react-icons/md";
 
-const Timer = ({ expiryTimestamp, setIsTimerRun }) => {
+const Timer = ({ expiryTimestamp, setIsTimerRun, setSessionCount, setBreakCount }) => {
     const [isPayse, setIsPayse] = useState(true);
 
     const {
@@ -47,10 +47,12 @@ const Timer = ({ expiryTimestamp, setIsTimerRun }) => {
             }}><HiPlayPause/></button>
            
             <button id="reset" onClick={() => {
-                // Restarts to 5 minutes timer
+                
                 const time = new Date();
-                time.setSeconds(time.getSeconds() + 300);
-                restart(time)
+                time.setSeconds(time.getSeconds() + 1500);
+                restart(time, false)
+                setSessionCount(25)
+                setBreakCount(5)
             }}><MdRestartAlt/></button>
         </div>
     );
