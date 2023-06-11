@@ -25,9 +25,8 @@ const Timer = ({ expiryTimestamp, setIsTimerRun, setSessionCount, setBreakCount 
         setIsTimerRun(isRunning)
     }, [isRunning])
 
-    const formattedMinutes = minutes.toString().padStart(2, '0');
+    const formattedMinutes =minutes==0?"60": minutes.toString().padStart(2, '0');
     const formattedSeconds = seconds.toString().padStart(2, '0');
-
     return (
         <div className='time_wrap' >
 
