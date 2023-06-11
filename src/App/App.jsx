@@ -16,7 +16,13 @@ function App() {
   }, [sessionCount]);
 
   const increment = (arg) => {
-    arg((prev) => prev + 1);
+    arg((prev) => {
+      if (prev == 60) {
+        return prev;
+      } else {
+        return prev + 1;
+      }
+    });
   };
 
   const decrement = (arg) => {
