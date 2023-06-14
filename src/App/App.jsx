@@ -84,6 +84,7 @@ function App() {
                 setIsTimerRun={setIsTimerRun}
                 setSessionCount={setSessionCount}
                 setBreakCount={setBreakCount}
+                breakCount={breakCount}
               />
             )}
           </div>
