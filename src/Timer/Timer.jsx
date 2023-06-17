@@ -12,6 +12,7 @@ const Timer = ({
   breakCount,
 }) => {
   const [isPayse, setIsPayse] = useState(true);
+  const [isBreakTime, setIsBreakTime] = useState(false);
 
   const { seconds, minutes, hours, isRunning, start, pause, resume, restart } =
     useTimer({ expiryTimestamp, autoStart: false });
@@ -29,6 +30,7 @@ const Timer = ({
       const time = new Date();
       time.setSeconds(time.getSeconds() + breakCount * 60);
       setTimeout(() => {
+        setIsBreakTime(true);
         restart(time.getTime(), true);
       }, 1000);
     }
@@ -37,12 +39,15 @@ const Timer = ({
   const formattedMinutes =
     hours > 0 ? "60" : minutes.toString().padStart(2, "0");
   const formattedSeconds = seconds.toString().padStart(2, "0");
-  console.log(seconds);
+  //   console.log(seconds);
 
   return (
     <div className="time_wrap">
-      <div id="time-left" style={{ fontSize: "80px" }}>
-        <span>{formattedMinutes}</span>:<span>{formattedSeconds}</span>
+      <div id="time-left">
+        {isBreakTime?<p id="timer-label">Break</p>:<p id="timer-label">Session</p>}
+        <p style={{ fontSize: "80px" }}>
+          <span>{formattedMinutes}</span>:<span>{formattedSeconds}</span>
+        </p>
       </div>
 
       <button

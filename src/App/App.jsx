@@ -77,7 +77,7 @@ function App() {
         </div>
         <div className="timer_wrap">
           <div className="timer">
-            <p id="timer-label">Session</p>
+            
             {expiryTimestamp && (
               <Timer
                 expiryTimestamp={expiryTimestamp}
