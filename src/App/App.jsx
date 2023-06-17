@@ -85,6 +85,7 @@ function App() {
                 setSessionCount={setSessionCount}
                 setBreakCount={setBreakCount}
                 breakCount={breakCount}
+                sessionCount={sessionCount}
               />
             )}
           </div>
