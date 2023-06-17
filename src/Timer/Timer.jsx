@@ -10,7 +10,7 @@ const Timer = ({
   setSessionCount,
   setBreakCount,
   breakCount,
-  sessionCount
+  sessionCount,
 }) => {
   const [isPayse, setIsPayse] = useState(true);
   const [isBreakTime, setIsBreakTime] = useState(false);
@@ -56,14 +56,20 @@ const Timer = ({
   return (
     <div className="time_wrap">
       <div id="time-left">
-        {isBreakTime ? (
-          <p id="timer-label">Break</p>
-        ) : (
-          <p id="timer-label">Session</p>
-        )}
-        <p style={{ fontSize: "80px" }}>
-          <span>{formattedMinutes}</span>:<span>{formattedSeconds}</span>
-        </p>
+        <div
+          className={` ${
+            minutes < 1 && seconds < 60 ? "red_count" : ""
+          }`}
+        >
+          {isBreakTime ? (
+            <p id="timer-label">Break</p>
+          ) : (
+            <p id="timer-label">Session</p>
+          )}
+          <p className="timer_count">
+            <span>{formattedMinutes}</span>:<span>{formattedSeconds}</span>
+          </p>
+        </div>
       </div>
 
       <button

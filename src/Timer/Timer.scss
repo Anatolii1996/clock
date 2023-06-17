@@ -1,9 +1,12 @@
 .time_wrap {
   text-align: center;
-  // #time-left {
-  //   font-size: 80px;
-  // }
-  button{
+  .timer_count {
+    font-size: 80px;
+  }
+  .red_count {
+    color: rgb(181, 13, 13);
+  }
+  button {
     cursor: pointer;
     border: 0;
     height: 30px;
@@ -13,5 +16,4 @@
       color: white;
     }
   }
- 
 }
