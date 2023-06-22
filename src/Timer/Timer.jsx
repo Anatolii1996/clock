@@ -5,13 +5,11 @@ import { useTimer } from "react-timer-hook";
 const Timer = ({
   expiryTimestamp,
   setIsTimerRun,
-  // setSessionCount,
-  // setBreakCount,
   breakCount,
   sessionCount,
   isRestart,
   isPause,
-  isResume
+  isResume,
 }) => {
   const [isBreakTime, setIsBreakTime] = useState(false);
 
@@ -34,15 +32,13 @@ const Timer = ({
     if (isPause) {
       pause();
       setIsTimerRun(false);
-    }
-  }, [isPause]);
-
-  useEffect(() => {
-    if (isResume) {
+    }else{
       resume();
       setIsTimerRun(true);
     }
-  }, [isResume]);
+  }, [isPause]);
+
+
 
   useEffect(() => {
     setIsTimerRun(isRunning);
@@ -73,7 +69,6 @@ const Timer = ({
   const formattedMinutes =
     hours > 0 ? "60" : minutes.toString().padStart(2, "0");
   const formattedSeconds = seconds.toString().padStart(2, "0");
-  //   console.log(seconds);
 
   return (
     <div className="time_wrap">

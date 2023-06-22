@@ -22,9 +22,6 @@ function App() {
     setExpiryTimestamp(time);
   }, [sessionCount]);
 
-  //  const { seconds, minutes, hours, isRunning, start, pause, resume, restart } =
-  //   useTimer({ expiryTimestamp, autoStart: false });
-
   const increment = (arg) => {
     arg((prev) => {
       if (prev == 60) {
@@ -91,8 +88,6 @@ function App() {
               <Timer
                 expiryTimestamp={expiryTimestamp}
                 setIsTimerRun={setIsTimerRun}
-                // setSessionCount={setSessionCount}
-                // setBreakCount={setBreakCount}
                 breakCount={breakCount}
                 sessionCount={sessionCount}
                 isRestart={isRestart}
@@ -105,14 +100,11 @@ function App() {
             <button
               id="start_stop"
               onClick={() => {
-                // console.log(isRunning);
                 if (!isTimerRun) {
                   setIsResume(true)
-                  
+                  setIsPause(false)
                 } else {
                   setIsPause(true)
-
-                 
                 }
               }}
             >
