@@ -60,15 +60,18 @@ body {
     .buttons {
       display: flex;
       justify-content: center;
+      padding-top: 15px;
       button {
         cursor: pointer;
         border: 0;
-        height: 30px;
         background: inherit;
         svg {
-          font-size: 30px;
+          font-size: 35px;
           color: white;
         }
+      }
+      button+button{
+        margin-left: 15px;
       }
     }
   }

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useTimer } from "react-timer-hook";
 import "./App.scss";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import Timer from "../Timer/Timer";
@@ -13,7 +12,7 @@ function App() {
   const [expiryTimestamp, setExpiryTimestamp] = useState(null);
   const [isTimerRun, setIsTimerRun] = useState(false);
   const [isRestart, setIsRestart] = useState(false);
-  const [isPause, setIsPause] = useState(false);
+  const [isPause, setIsPause] = useState(true);
   const [isResume, setIsResume] = useState(false);
 
   useEffect(() => {
