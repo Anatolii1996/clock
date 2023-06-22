@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./Timer.scss";
 import { useTimer } from "react-timer-hook";
-import { HiPlayPause } from "react-icons/hi2";
-import { MdRestartAlt } from "react-icons/md";
 
 const Timer = ({
   expiryTimestamp,
   setIsTimerRun,
-  setSessionCount,
-  setBreakCount,
+  // setSessionCount,
+  // setBreakCount,
   breakCount,
   sessionCount,
+  isRestart,
+  isPause,
+  isResume
 }) => {
-  const [isPayse, setIsPayse] = useState(true);
   const [isBreakTime, setIsBreakTime] = useState(false);
 
   const { seconds, minutes, hours, isRunning, start, pause, resume, restart } =
@@ -21,6 +21,28 @@ const Timer = ({
   useEffect(() => {
     restart(expiryTimestamp, false);
   }, [expiryTimestamp, restart]);
+
+  useEffect(() => {
+    if (isRestart) {
+      const time = new Date();
+      time.setSeconds(time.getSeconds() + 1500);
+      restart(time, false);
+    }
+  }, [isRestart]);
+
+  useEffect(() => {
+    if (isPause) {
+      pause();
+      setIsTimerRun(false);
+    }
+  }, [isPause]);
+
+  useEffect(() => {
+    if (isResume) {
+      resume();
+      setIsTimerRun(true);
+    }
+  }, [isResume]);
 
   useEffect(() => {
     setIsTimerRun(isRunning);
@@ -56,11 +78,7 @@ const Timer = ({
   return (
     <div className="time_wrap">
       <div id="time-left">
-        <div
-          className={` ${
-            minutes < 1 && seconds < 60 ? "red_count" : ""
-          }`}
-        >
+        <div className={` ${minutes < 1 && seconds < 60 ? "red_count" : ""}`}>
           {isBreakTime ? (
             <p id="timer-label">Break</p>
           ) : (
@@ -71,34 +89,6 @@ const Timer = ({
           </p>
         </div>
       </div>
-
-      <button
-        id="start_stop"
-        onClick={() => {
-          if (isPayse) {
-            resume();
-            setIsPayse(false);
-          } else {
-            pause();
-            setIsPayse(true);
-          }
-        }}
-      >
-        <HiPlayPause />
-      </button>
-
-      <button
-        id="reset"
-        onClick={() => {
-          const time = new Date();
-          time.setSeconds(time.getSeconds() + 1500);
-          restart(time, false);
-          setSessionCount(25);
-          setBreakCount(5);
-        }}
-      >
-        <MdRestartAlt />
-      </button>
     </div>
   );
 };

@@ -16,12 +16,13 @@ body {
   color: white;
   font-size: 26px;
   font-weight: 600;
-  h1{
+  h1 {
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
   }
-  #break-label, #session-label {
+  #break-label,
+  #session-label {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -38,21 +39,36 @@ body {
       color: white;
       border: 0;
     }
-    #break-length, #session-length {
+    #break-length,
+    #session-length {
       padding: 0 10px;
     }
   }
-  .timer_wrap{
+  .timer_wrap {
     width: 100%;
-    .timer{
+    .timer {
       margin: 0 auto;
       width: 300px;
       border: 7px solid #13353a;
       border-radius: 50px;
       padding: 20px 30px;
       margin-top: 50px;
-      #timer-label{
+      #timer-label {
         text-align: center;
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      button {
+        cursor: pointer;
+        border: 0;
+        height: 30px;
+        background: inherit;
+        svg {
+          font-size: 30px;
+          color: white;
+        }
       }
     }
   }
