@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Timer.scss";
 import { useTimer } from "react-timer-hook";
 
@@ -12,6 +12,7 @@ const Timer = ({
   isResume,
 }) => {
   const [isBreakTime, setIsBreakTime] = useState(false);
+  const audioRef = useRef(null);
 
   const { seconds, minutes, hours, isRunning, start, pause, resume, restart } =
     useTimer({ expiryTimestamp, autoStart: false });
@@ -32,13 +33,11 @@ const Timer = ({
     if (isPause) {
       pause();
       setIsTimerRun(false);
-    }else{
+    } else {
       resume();
       setIsTimerRun(true);
     }
   }, [isPause]);
-
-
 
   useEffect(() => {
     setIsTimerRun(isRunning);
@@ -51,6 +50,7 @@ const Timer = ({
       setTimeout(() => {
         setIsBreakTime(true);
         restart(time.getTime(), true);
+        playAudio();
       }, 1000);
     }
   }, [minutes, seconds, breakCount, restart]);
@@ -62,6 +62,7 @@ const Timer = ({
       setTimeout(() => {
         setIsBreakTime(false);
         restart(time.getTime(), true);
+        playAudio();
       }, 1000);
     }
   }, [minutes, seconds, sessionCount, restart]);
@@ -69,6 +70,10 @@ const Timer = ({
   const formattedMinutes =
     hours > 0 ? "60" : minutes.toString().padStart(2, "0");
   const formattedSeconds = seconds.toString().padStart(2, "0");
+
+  const playAudio = () => {
+    audioRef.current.play();
+  };
 
   return (
     <div className="time_wrap">
@@ -84,6 +89,11 @@ const Timer = ({
           </p>
         </div>
       </div>
+      <audio
+        id="beep"
+        ref={audioRef}
+        src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+      ></audio>
     </div>
   );
 };
