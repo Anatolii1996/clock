@@ -69,6 +69,7 @@ const Timer = ({
 
   const formattedMinutes =
     hours > 0 ? "60" : minutes.toString().padStart(2, "0");
+    
   const formattedSeconds = seconds.toString().padStart(2, "0");
 
   const playAudio = () => {
@@ -77,18 +78,17 @@ const Timer = ({
 
   return (
     <div className="time_wrap">
-      <div id="time-left">
-        <div className={` ${minutes < 1 && seconds < 60 ? "red_count" : ""}`}>
-          {isBreakTime ? (
-            <p id="timer-label">Break</p>
-          ) : (
-            <p id="timer-label">Session</p>
-          )}
-          <p className="timer_count">
-            <span>{formattedMinutes}</span>:<span>{formattedSeconds}</span>
-          </p>
-        </div>
+      <div className={` ${minutes < 1 && seconds < 60 ? "red_count" : ""}`}>
+        {isBreakTime ? (
+          <p id="timer-label">Break</p>
+        ) : (
+          <p id="timer-label">Session</p>
+        )}
+        <p id="time-left" className="timer_count">
+          {formattedMinutes}:{formattedSeconds}
+        </p>
       </div>
+
       <audio
         id="beep"
         ref={audioRef}
