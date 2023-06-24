@@ -9,12 +9,11 @@ const Timer = ({
   sessionCount,
   isRestart,
   isPause,
-  isResume,
 }) => {
   const [isBreakTime, setIsBreakTime] = useState(false);
   const audioRef = useRef(null);
 
-  const { seconds, minutes, hours, isRunning, start, pause, resume, restart } =
+  const { seconds, minutes, hours, isRunning, pause, resume, restart } =
     useTimer({ expiryTimestamp, autoStart: false });
 
   useEffect(() => {
@@ -67,9 +66,16 @@ const Timer = ({
     }
   }, [minutes, seconds, sessionCount, restart]);
 
+  useEffect(() => {
+    if (breakCount == 5 && sessionCount == 25) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+  }, [breakCount, sessionCount]);
+
   const formattedMinutes =
     hours > 0 ? "60" : minutes.toString().padStart(2, "0");
-    
+
   const formattedSeconds = seconds.toString().padStart(2, "0");
 
   const playAudio = () => {
@@ -84,9 +90,9 @@ const Timer = ({
         ) : (
           <p id="timer-label">Session</p>
         )}
-        <p id="time-left" className="timer_count">
+        <div id="time-left" className="timer_count">
           {formattedMinutes}:{formattedSeconds}
-        </p>
+        </div>
       </div>
 
       <audio

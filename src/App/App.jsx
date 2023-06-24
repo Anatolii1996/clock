@@ -13,7 +13,6 @@ function App() {
   const [isTimerRun, setIsTimerRun] = useState(false);
   const [isRestart, setIsRestart] = useState(false);
   const [isPause, setIsPause] = useState(true);
-  const [isResume, setIsResume] = useState(false);
 
   useEffect(() => {
     const time = new Date();
@@ -91,7 +90,6 @@ function App() {
                 sessionCount={sessionCount}
                 isRestart={isRestart}
                 isPause={isPause}
-                isResume={isResume}
               />
             )}
           </div>
@@ -100,7 +98,6 @@ function App() {
               id="start_stop"
               onClick={() => {
                 if (!isTimerRun) {
-                  setIsResume(true)
                   setIsPause(false)
                 } else {
                   setIsPause(true)
